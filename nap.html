@@ -1,77 +1,34 @@
 <!DOCTYPE html>
-<html lang="vi">
-
+<html>
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Nạp tiền - iOS Thắng Sign</title>
+<title>Ví Xu</title>
 
 <style>
-
 body{
-margin:0;
 font-family:Arial;
 background:#f2f2f7;
-}
-
-/* header */
-
-.header{
-display:flex;
-align-items:center;
-padding:15px;
-background:white;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-.title{
-font-size:20px;
-font-weight:bold;
-}
-
-/* card */
-
-.container{
-padding:25px;
-}
-
-.card{
-
-background:white;
-padding:25px;
-border-radius:20px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
 text-align:center;
-
+padding:40px;
 }
 
-.bank{
-
-margin-top:20px;
-font-size:16px;
-
+.box{
+background:white;
+padding:30px;
+border-radius:20px;
+max-width:350px;
+margin:auto;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
 
-.copy{
-
-margin-top:15px;
-padding:10px 20px;
-background:#007aff;
+button{
+background:#28a745;
 color:white;
 border:none;
+padding:12px;
+width:90%;
 border-radius:10px;
-
-}
-
-.back{
-
-display:block;
-margin-top:20px;
-text-decoration:none;
-color:#007aff;
-
+margin-top:10px;
 }
 
 </style>
@@ -80,43 +37,42 @@ color:#007aff;
 
 <body>
 
-<div class="header">
+<div class="box">
 
-<div class="title">💰 Nạp tiền</div>
+<h2>Ví của bạn</h2>
 
-</div>
+<p>Số xu hiện tại:</p>
 
-<div class="container">
+<h1 id="xu"></h1>
 
-<div class="card">
-
-<h2>Nạp tiền vào tài khoản</h2>
-
-<div class="bank">
-
-<b>Ngân hàng:</b> TP Bank
-
-<br><br>
-
-<b>Số tài khoản:</b> 30120079999
-
-<br><br>
-
-<b>Chủ tài khoản:</b> LY VAN THANG
-
-<br><br>
-
-<b>Nội dung:</b> NapTien + UID
+<button onclick="nap()">Admin cộng 100 xu</button>
 
 </div>
 
-<button class="copy">Đã chuyển khoản</button>
+<script>
 
-<a href="index.html" class="back">← Quay lại trang chủ</a>
+function load(){
 
-</div>
+document.getElementById("xu").innerHTML =
+localStorage.getItem("xu");
 
-</div>
+}
+
+function nap(){
+
+let xu=parseInt(localStorage.getItem("xu"));
+
+xu +=100;
+
+localStorage.setItem("xu",xu);
+
+load();
+
+}
+
+load();
+
+</script>
 
 </body>
 </html>
