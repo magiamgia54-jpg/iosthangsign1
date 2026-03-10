@@ -1,89 +1,56 @@
 <!DOCTYPE html>
-<html lang="vi">
-
+<html>
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>Đăng nhập</title>
 
 <style>
-
 body{
-font-family:-apple-system;
+font-family:Arial;
 background:#f2f2f7;
-margin:0;
-}
-
-header{
-background:white;
-padding:16px;
 text-align:center;
-font-weight:600;
-font-size:20px;
-}
-
-.container{
-padding:25px;
-max-width:400px;
-margin:auto;
+padding:40px;
 }
 
 .box{
 background:white;
-padding:25px;
+padding:30px;
 border-radius:20px;
-box-shadow:0 8px 20px rgba(0,0,0,0.08);
+max-width:350px;
+margin:auto;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
 
 input{
-width:100%;
-padding:10px;
-margin-top:10px;
+width:90%;
+padding:12px;
+margin:10px 0;
 border-radius:10px;
 border:1px solid #ddd;
 }
 
 button{
-margin-top:15px;
-width:100%;
-padding:10px;
-border:none;
 background:#007aff;
 color:white;
+border:none;
+padding:12px;
+width:95%;
 border-radius:10px;
 }
-
-a{
-display:block;
-margin-top:15px;
-text-align:center;
-color:#007aff;
-text-decoration:none;
-}
-
 </style>
 
 </head>
 
 <body>
 
-<header>Đăng nhập</header>
-
-<div class="container">
-
 <div class="box">
 
-<input id="user" placeholder="Tài khoản">
+<h2>Đăng nhập</h2>
 
+<input id="user" placeholder="Tên tài khoản">
 <input id="pass" type="password" placeholder="Mật khẩu">
 
 <button onclick="login()">Đăng nhập</button>
-
-<a href="register.html">Đăng ký</a>
-
-</div>
 
 </div>
 
@@ -91,18 +58,17 @@ text-decoration:none;
 
 function login(){
 
-let u=document.getElementById("user").value
-let p=document.getElementById("pass").value
+let user=document.getElementById("user").value;
+let pass=document.getElementById("pass").value;
 
-if(u=="admin" && p=="123456"){
+if(user==localStorage.getItem("user") && pass==localStorage.getItem("pass")){
 
-localStorage.setItem("login","true")
-
-location="admin.html"
+alert("Đăng nhập thành công");
+window.location="nap.html";
 
 }else{
 
-alert("Sai tài khoản")
+alert("Sai tài khoản");
 
 }
 
