@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Admin Panel</title>
+
+<style>
+
+body{
+font-family:-apple-system;
+background:#f2f2f7;
+margin:0;
+}
+
+header{
+background:white;
+padding:16px;
+text-align:center;
+font-size:20px;
+font-weight:600;
+}
+
+.container{
+padding:25px;
+max-width:500px;
+margin:auto;
+}
+
+.box{
+background:white;
+padding:20px;
+border-radius:18px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:10px;
+border:1px solid #ddd;
+}
+
+button{
+margin-top:10px;
+background:#007aff;
+color:white;
+border:none;
+padding:10px;
+border-radius:10px;
+width:100%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>Admin Panel</header>
+
+<div class="container">
+
+<div class="box">
+
+<input id="name" placeholder="Tên app">
+
+<input id="desc" placeholder="Mô tả">
+
+<input id="icon" placeholder="Link icon">
+
+<button onclick="addApp()">Thêm app</button>
+
+</div>
+
+</div>
+
+<script>
+
+function addApp(){
+
+let name=document.getElementById("name").value
+let desc=document.getElementById("desc").value
+let icon=document.getElementById("icon").value
+
+let apps=JSON.parse(localStorage.getItem("apps")||"[]")
+
+apps.push({name,desc,icon})
+
+localStorage.setItem("apps",JSON.stringify(apps))
+
+alert("Đã thêm app")
+
+}
+
+</script>
+
+</body>
+</html>
