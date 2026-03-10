@@ -1,53 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Admin cộng xu</title>
-
-<style>
-body{font-family:Arial;background:#f2f2f7;text-align:center;padding:40px;}
-.box{background:white;padding:30px;border-radius:20px;max-width:350px;margin:auto;}
-input{width:90%;padding:12px;margin:10px;border-radius:10px;border:1px solid #ddd;}
-button{background:#28a745;color:white;border:none;padding:12px;width:95%;border-radius:10px;}
-</style>
-
 </head>
 
-<body>
-
-<div class="box">
+<body style="font-family:Arial;text-align:center;padding:40px">
 
 <h2>Admin cộng xu</h2>
 
-<input id="user" placeholder="Tên tài khoản">
+<input id="uid" placeholder="UID user"><br><br>
 
-<input id="xu" placeholder="Số xu cộng">
+<input id="xu" placeholder="Số xu"><br><br>
 
 <button onclick="cong()">Cộng Xu</button>
 
-</div>
+<script type="module" src="firebase.js"></script>
 
-<script>
+<script type="module">
 
-function cong(){
+import { doc,updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-let user=document.getElementById("user").value;
+window.cong = async function(){
 
-let them=parseInt(document.getElementById("xu").value);
+let uid=document.getElementById("uid").value;
+let xu=parseInt(document.getElementById("xu").value);
 
-let users=JSON.parse(localStorage.getItem("users")) || {};
+let ref=doc(db,"users",uid);
 
-if(!users[user]){
-
-alert("User không tồn tại");
-
-return;
-
-}
-
-users[user].xu += them;
-
-localStorage.setItem("users",JSON.stringify(users));
+await updateDoc(ref,{
+xu:xu
+});
 
 alert("Cộng xu thành công");
 
