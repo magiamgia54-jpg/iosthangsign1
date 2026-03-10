@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Ví Xu</title>
+</head>
+
+<body style="font-family:Arial;text-align:center;padding:40px">
+
+<h2>Ví của bạn</h2>
+
+<h1 id="xu">0</h1>
+
+<script type="module" src="firebase.js"></script>
+
+<script type="module">
+
+import { doc,getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+onAuthStateChanged(auth, async(user)=>{
+
+let ref = doc(db,"users",user.uid);
+
+let snap = await getDoc(ref);
+
+document.getElementById("xu").innerHTML=snap.data().xu;
+
+});
+
+</script>
+
+</body>
+</html>
