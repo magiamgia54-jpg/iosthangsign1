@@ -35,6 +35,15 @@ font-size:20px;
 font-weight:bold;
 }
 
+#userAvatar{
+width:35px;
+height:35px;
+border-radius:50%;
+margin-left:auto;
+cursor:pointer;
+display:none;
+}
+
 .sidebar{
 position:fixed;
 left:-250px;
@@ -125,13 +134,26 @@ text-align:center;
 z-index:2000;
 }
 
-.balance-box button{
-margin-top:10px;
-padding:8px 15px;
-border:none;
-background:#007aff;
-color:white;
+/* menu user */
+
+.userMenu{
+display:none;
+position:fixed;
+top:60px;
+right:10px;
+background:white;
 border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+width:180px;
+z-index:2000;
+}
+
+.userMenu a{
+display:block;
+padding:12px;
+text-decoration:none;
+color:black;
+border-bottom:1px solid #eee;
 }
 
 </style>
@@ -143,6 +165,9 @@ border-radius:10px;
 <div class="header">
 <span class="menu-btn" onclick="openMenu()">☰</span>
 <div class="title">iOS Thắng Sign</div>
+
+<img id="userAvatar" src="https://i.imgur.com/6VBx3io.png" onclick="openUserMenu()">
+
 </div>
 
 <div class="sidebar" id="menu">
@@ -152,7 +177,6 @@ border-radius:10px;
 <a href="sign.html">📦 Ký App IPA</a>
 <a href="buy.html">💳 Mua chứng chỉ</a>
 <a href="nap.html">💰 Nạp tiền</a>
-
 <a href="bank.html">🏦 Thuê bank ảo</a>
 
 <a href="#" onclick="showBalance()">💎 Số dư tài khoản</a>
@@ -202,45 +226,18 @@ border-radius:10px;
 
 </div>
 
-<div class="app">
-<div class="app-left">
-<img src="https://i.imgur.com/7D7I6dI.jpeg">
-<div>
-<b>Menu FF iOS</b>
-<br>
-<small>Bản mod mới</small>
 </div>
-</div>
-
-<button class="install">Install</button>
-</div>
-
-<div class="app">
-<div class="app-left">
-<img src="https://i.imgur.com/7D7I6dI.jpeg">
-<div>
-<b>Skibx VNG</b>
-<br>
-<small>Update 2026</small>
-</div>
-</div>
-
-<button class="install">Install</button>
-
-</div>
-
-</div>
-
-<!-- popup số dư -->
 
 <div class="balance-box" id="balanceBox">
-
 <h3>Số dư tài khoản</h3>
-
 <p id="balanceText">0 Xu</p>
-
 <button onclick="closeBalance()">Đóng</button>
+</div>
 
+<div class="userMenu" id="userMenu">
+<a href="#">👤 Tài khoản</a>
+<a href="#" onclick="showBalance()">💰 Số dư</a>
+<a href="#" onclick="logout()">🚪 Đăng xuất</a>
 </div>
 
 <script>
@@ -257,7 +254,7 @@ menu.style.left="0px";
 
 }
 
-/* hệ thống số dư */
+/* số dư */
 
 let balance=localStorage.getItem("balance") || 0;
 
@@ -268,6 +265,34 @@ document.getElementById("balanceText").innerText=balance+" Xu";
 
 function closeBalance(){
 document.getElementById("balanceBox").style.display="none";
+}
+
+/* avatar */
+
+let user = localStorage.getItem("user");
+
+if(user){
+document.getElementById("userAvatar").style.display="block";
+}
+
+function openUserMenu(){
+
+let menu=document.getElementById("userMenu");
+
+if(menu.style.display=="block"){
+menu.style.display="none";
+}else{
+menu.style.display="block";
+}
+
+}
+
+function logout(){
+
+localStorage.removeItem("user");
+alert("Đã đăng xuất");
+location.reload();
+
 }
 
 </script>
