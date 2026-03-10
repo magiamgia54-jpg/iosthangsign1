@@ -171,7 +171,7 @@ cursor:pointer;
 
 <!-- APP LIST -->
 
-<div class="container">
+<div class="container" id="appList">
 
 <div class="app">
 
@@ -276,6 +276,42 @@ menu.style.left="0px";
 }
 
 }
+
+/* load app admin thêm */
+
+let savedApps=JSON.parse(localStorage.getItem("apps"))||[]
+
+let list=document.getElementById("appList")
+
+savedApps.forEach(app=>{
+
+list.innerHTML+=`
+
+<div class="app">
+
+<div class="app-left">
+
+<img src="${app.icon}">
+
+<div>
+
+<b>${app.name}</b>
+
+<br>
+
+<small>${app.desc}</small>
+
+</div>
+
+</div>
+
+<button class="install" onclick="window.open('${app.link}')">Install</button>
+
+</div>
+
+`
+
+})
 
 </script>
 
