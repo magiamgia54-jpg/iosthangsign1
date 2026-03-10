@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Đăng nhập</title>
+
+<style>
+
+body{
+font-family:-apple-system;
+background:#f2f2f7;
+margin:0;
+}
+
+header{
+background:white;
+padding:16px;
+text-align:center;
+font-weight:600;
+font-size:20px;
+}
+
+.container{
+padding:25px;
+max-width:400px;
+margin:auto;
+}
+
+.box{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:10px;
+border:1px solid #ddd;
+}
+
+button{
+margin-top:15px;
+width:100%;
+padding:10px;
+border:none;
+background:#007aff;
+color:white;
+border-radius:10px;
+}
+
+a{
+display:block;
+margin-top:15px;
+text-align:center;
+color:#007aff;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>Đăng nhập</header>
+
+<div class="container">
+
+<div class="box">
+
+<input id="user" placeholder="Tài khoản">
+
+<input id="pass" type="password" placeholder="Mật khẩu">
+
+<button onclick="login()">Đăng nhập</button>
+
+<a href="register.html">Đăng ký</a>
+
+</div>
+
+</div>
+
+<script>
+
+function login(){
+
+let u=document.getElementById("user").value
+let p=document.getElementById("pass").value
+
+if(u=="admin" && p=="123456"){
+
+localStorage.setItem("login","true")
+
+location="admin.html"
+
+}else{
+
+alert("Sai tài khoản")
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
