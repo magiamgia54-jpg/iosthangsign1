@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Thanh Toán Thuê Dịch Vụ</title>
+<title>Thanh Toán</title>
 
 <style>
 
@@ -27,11 +28,11 @@ box-shadow:0 0 10px rgba(0,0,0,0.1);
 
 .title{
 font-size:24px;
-margin-bottom:20px;
 font-weight:bold;
+margin-bottom:15px;
 }
 
-.pricebox{
+.price{
 background:#f1f1f1;
 padding:15px;
 border-radius:10px;
@@ -39,27 +40,23 @@ margin-bottom:20px;
 text-align:left;
 }
 
-.name{
-font-size:20px;
-font-weight:bold;
-}
-
 .stk{
-font-size:24px;
-margin:10px 0;
+font-size:22px;
 font-weight:bold;
+margin-top:10px;
 }
 
 .qr{
-width:260px;
+width:250px;
 margin:20px 0;
 }
 
-.note{
-background:#f1f1f1;
+.token{
+background:#fff3cd;
 padding:12px;
 border-radius:10px;
-line-height:1.6;
+margin-top:15px;
+font-weight:bold;
 }
 
 .btn{
@@ -81,33 +78,53 @@ font-weight:bold;
 
 <div class="box">
 
-<div class="title">Quét mã để chuyển tiền</div>
+<div class="title">Quét QR để thanh toán</div>
 
-<div class="pricebox">
-<b>Bảng Giá</b><br><br>
-Ký app Basic: <b>10.000đ / lần</b><br>
+<div class="price">
+
+<b>Bảng giá</b><br><br>
+
+Basic ký app: <b>10.000đ / lần</b><br>
 VIP: <b>50.000đ / tháng</b><br>
 Cực VIP: <b>100.000đ / tháng</b>
+
 </div>
 
-<div class="name">LY VAN THANG</div>
+<div>
+<b>LY VAN THANG</b>
+</div>
 
-<div class="stk">23935211</div>
+<div class="stk">
+23935211
+</div>
+
+<div>
+Ngân hàng ACB
+</div>
 
 <img class="qr"
 src="https://img.vietqr.io/image/acb-23935211-compact.png?addInfo=Thangdepzai">
 
-<div class="note">
-Ngân hàng: ACB<br>
-Nội dung: <b>Thangdepzai</b><br>
-Khách tự nhập số tiền theo gói
+<div class="token" id="token">
 </div>
 
-<a class="btn" href="https://zalo.me/0395251479">
+<a class="btn" id="zaloBtn" href="#">
 Tôi đã chuyển tiền
 </a>
 
 </div>
+
+<script>
+
+let token = "THANG-" + Math.floor(100000 + Math.random()*900000);
+
+document.getElementById("token").innerHTML =
+"Mã xác nhận của bạn: " + token;
+
+document.getElementById("zaloBtn").href =
+"https://zalo.me/0395251479?text=Em đã chuyển tiền. Mã xác nhận: " + token;
+
+</script>
 
 </body>
 </html>
