@@ -109,6 +109,31 @@ border-radius:20px;
 cursor:pointer;
 }
 
+/* popup số dư */
+
+.balance-box{
+display:none;
+position:fixed;
+top:35%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+text-align:center;
+z-index:2000;
+}
+
+.balance-box button{
+margin-top:10px;
+padding:8px 15px;
+border:none;
+background:#007aff;
+color:white;
+border-radius:10px;
+}
+
 </style>
 
 </head>
@@ -127,6 +152,9 @@ cursor:pointer;
 <a href="sign.html">📦 Ký App IPA</a>
 <a href="buy.html">💳 Mua chứng chỉ</a>
 <a href="nap.html">💰 Nạp tiền</a>
+
+<a href="#" onclick="showBalance()">💎 Số dư tài khoản</a>
+
 <a href="contact.html">👤 Liên hệ Admin</a>
 <a href="login.html">🔑 Đăng nhập</a>
 <a href="register.html">📝 Đăng ký</a>
@@ -201,6 +229,18 @@ cursor:pointer;
 
 </div>
 
+<!-- popup số dư -->
+
+<div class="balance-box" id="balanceBox">
+
+<h3>Số dư tài khoản</h3>
+
+<p id="balanceText">0 Xu</p>
+
+<button onclick="closeBalance()">Đóng</button>
+
+</div>
+
 <script>
 
 function openMenu(){
@@ -213,6 +253,19 @@ menu.style.left="-250px";
 menu.style.left="0px";
 }
 
+}
+
+/* hệ thống số dư */
+
+let balance=localStorage.getItem("balance") || 0;
+
+function showBalance(){
+document.getElementById("balanceBox").style.display="block";
+document.getElementById("balanceText").innerText=balance+" Xu";
+}
+
+function closeBalance(){
+document.getElementById("balanceBox").style.display="none";
 }
 
 </script>
