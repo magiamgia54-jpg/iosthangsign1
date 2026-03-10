@@ -1,47 +1,40 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Đăng ký</title>
-
-<style>
-body{font-family:Arial;background:#f2f2f7;text-align:center;padding:40px;}
-.box{background:white;padding:30px;border-radius:20px;max-width:350px;margin:auto;}
-input{width:90%;padding:12px;margin:10px;border-radius:10px;border:1px solid #ddd;}
-button{background:#007aff;color:white;border:none;padding:12px;width:95%;border-radius:10px;}
-</style>
-
 </head>
 
-<body>
-
-<div class="box">
+<body style="font-family:Arial;text-align:center;padding:40px">
 
 <h2>Đăng ký</h2>
 
-<input id="user" placeholder="Tên tài khoản">
-<input id="pass" type="password" placeholder="Mật khẩu">
+<input id="email" placeholder="Email"><br><br>
+
+<input id="pass" type="password" placeholder="Mật khẩu"><br><br>
 
 <button onclick="dangky()">Đăng ký</button>
 
-</div>
+<script type="module" src="firebase.js"></script>
 
-<script>
+<script type="module">
 
-function dangky(){
+import { doc,setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-let user=document.getElementById("user").value;
+window.dangky = async function(){
+
+let email=document.getElementById("email").value;
 let pass=document.getElementById("pass").value;
 
-let users=JSON.parse(localStorage.getItem("users")) || {};
+let user = await createUserWithEmailAndPassword(auth,email,pass);
 
-users[user]={password:pass,xu:0};
-
-localStorage.setItem("users",JSON.stringify(users));
+await setDoc(doc(db,"users",user.user.uid),{
+email:email,
+xu:0
+});
 
 alert("Đăng ký thành công");
-
-window.location="login.html";
 
 }
 
