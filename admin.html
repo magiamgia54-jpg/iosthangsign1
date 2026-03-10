@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Admin Panel</title>
 
 <style>
@@ -17,7 +19,10 @@ padding:20px;
 .box{
 background:white;
 padding:20px;
-border-radius:10px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+max-width:400px;
+margin:auto;
 }
 
 input{
@@ -35,6 +40,11 @@ border:none;
 padding:10px;
 width:100%;
 border-radius:6px;
+cursor:pointer;
+}
+
+h2{
+text-align:center;
 }
 
 </style>
@@ -43,7 +53,7 @@ border-radius:6px;
 
 <body>
 
-<div id="login">
+<div id="login" class="box">
 
 <h2>Admin Login</h2>
 
@@ -53,9 +63,7 @@ border-radius:6px;
 
 </div>
 
-<div id="panel" style="display:none">
-
-<div class="box">
+<div id="panel" class="box" style="display:none">
 
 <h2>Thêm App</h2>
 
@@ -71,8 +79,6 @@ border-radius:6px;
 
 </div>
 
-</div>
-
 <script>
 
 function login(){
@@ -82,7 +88,6 @@ let pass=document.getElementById("pass").value
 if(pass=="123456"){
 
 document.getElementById("login").style.display="none"
-
 document.getElementById("panel").style.display="block"
 
 }else{
@@ -100,16 +105,14 @@ let desc=document.getElementById("desc").value
 let icon=document.getElementById("icon").value
 let plist=document.getElementById("plist").value
 
-let newApp={
+let apps=JSON.parse(localStorage.getItem("apps"))||[]
+
+apps.push({
 name:name,
 desc:desc,
 icon:icon,
-link:"itms-services://?action=download-manifest&url="+plist
-}
-
-let apps=JSON.parse(localStorage.getItem("apps"))||[]
-
-apps.push(newApp)
+plist:plist
+})
 
 localStorage.setItem("apps",JSON.stringify(apps))
 
