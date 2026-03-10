@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,7 +13,7 @@
 body{
 margin:0;
 font-family:Arial;
-background:#f5f6fa;
+background:#f2f2f7;
 }
 
 /* header */
@@ -54,49 +56,87 @@ display:block;
 padding:15px;
 text-decoration:none;
 color:black;
-font-size:16px;
 border-bottom:1px solid #eee;
 }
 
-.sidebar a:hover{
-background:#f1f1f1;
+/* banner */
+
+.banner{
+
+background:linear-gradient(90deg,#1c7ed6,#15aabf);
+color:white;
+text-align:center;
+padding:50px 20px;
+
 }
 
-/* content */
+.banner h1{
+margin:0;
+font-size:28px;
+}
+
+.banner p{
+margin-top:10px;
+opacity:0.9;
+}
+
+/* app list */
 
 .container{
-padding:30px;
-text-align:center;
+padding:20px;
 }
 
-.box{
+.app{
+
 background:white;
-padding:30px;
 border-radius:20px;
+padding:15px;
+margin-bottom:15px;
+display:flex;
+align-items:center;
+justify-content:space-between;
 box-shadow:0 5px 20px rgba(0,0,0,0.1);
+
 }
 
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:12px 25px;
+.app-left{
+display:flex;
+align-items:center;
+}
+
+.app img{
+
+width:60px;
+height:60px;
+border-radius:15px;
+margin-right:15px;
+
+}
+
+.install{
+
 background:#007aff;
 color:white;
-border-radius:10px;
-text-decoration:none;
+border:none;
+padding:10px 18px;
+border-radius:20px;
+cursor:pointer;
+
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="header">
-<span class="menu-btn" onclick="openMenu()">☰</span>
-<div class="title">iOS Thắng Sign</div>
-</div>
 
-<!-- menu -->
+<span class="menu-btn" onclick="openMenu()">☰</span>
+
+<div class="title">iOS Thắng Sign</div>
+
+</div>
 
 <div class="sidebar" id="menu">
 
@@ -108,23 +148,107 @@ text-decoration:none;
 
 <a href="contact.html">👤 Liên hệ Admin</a>
 
-<a href="login.html">🔑 Đăng nhập</a>
+</div>
 
-<a href="register.html">📝 Đăng ký</a>
+<!-- banner -->
+
+<div class="banner">
+
+<h1>iOS Thắng Sign</h1>
+
+<p>Dịch vụ ký app iOS nhanh chóng</p>
 
 </div>
 
-<!-- trang chủ -->
+<!-- app -->
 
 <div class="container">
 
-<div class="box">
+<div class="app">
 
-<h2>Chào mừng đến với iOS Thắng Sign</h2>
+<div class="app-left">
 
-<p>Dịch vụ ký app IPA nhanh chóng và ổn định.</p>
+<img src="https://i.imgur.com/7D7I6dI.jpeg">
 
-<a href="sign.html" class="btn">Ký App ngay</a>
+<div>
+
+<b>Delta VNG</b>
+
+<br>
+
+<small>Phiên bản mới 2026</small>
+
+</div>
+
+</div>
+
+<button class="install">Install</button>
+
+</div>
+
+<div class="app">
+
+<div class="app-left">
+
+<img src="https://i.imgur.com/7D7I6dI.jpeg">
+
+<div>
+
+<b>Delta Fix Lag</b>
+
+<br>
+
+<small>Update mới nhất</small>
+
+</div>
+
+</div>
+
+<button class="install">Install</button>
+
+</div>
+
+<div class="app">
+
+<div class="app-left">
+
+<img src="https://i.imgur.com/7D7I6dI.jpeg">
+
+<div>
+
+<b>Menu FF iOS</b>
+
+<br>
+
+<small>Bản mod mới</small>
+
+</div>
+
+</div>
+
+<button class="install">Install</button>
+
+</div>
+
+<div class="app">
+
+<div class="app-left">
+
+<img src="https://i.imgur.com/7D7I6dI.jpeg">
+
+<div>
+
+<b>Skibx VNG</b>
+
+<br>
+
+<small>Update 2026</small>
+
+</div>
+
+</div>
+
+<button class="install">Install</button>
 
 </div>
 
