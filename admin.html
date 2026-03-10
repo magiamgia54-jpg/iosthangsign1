@@ -1,122 +1,55 @@
 <!DOCTYPE html>
-<html lang="vi">
-
+<html>
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Admin Panel</title>
+<title>Admin cộng xu</title>
 
 <style>
-
-body{
-font-family:Arial;
-background:#f2f2f7;
-padding:20px;
-}
-
-.box{
-background:white;
-padding:20px;
-border-radius:15px;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
-max-width:400px;
-margin:auto;
-}
-
-input{
-width:100%;
-padding:10px;
-margin-bottom:10px;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
-button{
-background:#007aff;
-color:white;
-border:none;
-padding:10px;
-width:100%;
-border-radius:6px;
-cursor:pointer;
-}
-
-h2{
-text-align:center;
-}
-
+body{font-family:Arial;background:#f2f2f7;text-align:center;padding:40px;}
+.box{background:white;padding:30px;border-radius:20px;max-width:350px;margin:auto;}
+input{width:90%;padding:12px;margin:10px;border-radius:10px;border:1px solid #ddd;}
+button{background:#28a745;color:white;border:none;padding:12px;width:95%;border-radius:10px;}
 </style>
 
 </head>
 
 <body>
 
-<div id="login" class="box">
+<div class="box">
 
-<h2>Admin Login</h2>
+<h2>Admin cộng xu</h2>
 
-<input id="pass" placeholder="Nhập mật khẩu">
+<input id="user" placeholder="Tên tài khoản">
 
-<button onclick="login()">Đăng nhập</button>
+<input id="xu" placeholder="Số xu cộng">
 
-</div>
-
-<div id="panel" class="box" style="display:none">
-
-<h2>Thêm App</h2>
-
-<input id="name" placeholder="Tên app">
-
-<input id="desc" placeholder="Mô tả">
-
-<input id="icon" placeholder="Link icon">
-
-<input id="plist" placeholder="Link plist">
-
-<button onclick="addApp()">Thêm App</button>
+<button onclick="cong()">Cộng Xu</button>
 
 </div>
 
 <script>
 
-function login(){
+function cong(){
 
-let pass=document.getElementById("pass").value
+let user=document.getElementById("user").value;
 
-if(pass=="123456"){
+let them=parseInt(document.getElementById("xu").value);
 
-document.getElementById("login").style.display="none"
-document.getElementById("panel").style.display="block"
+let users=JSON.parse(localStorage.getItem("users")) || {};
 
-}else{
+if(!users[user]){
 
-alert("Sai mật khẩu")
+alert("User không tồn tại");
+
+return;
 
 }
 
-}
+users[user].xu += them;
 
-function addApp(){
+localStorage.setItem("users",JSON.stringify(users));
 
-let name=document.getElementById("name").value
-let desc=document.getElementById("desc").value
-let icon=document.getElementById("icon").value
-let plist=document.getElementById("plist").value
-
-let apps=JSON.parse(localStorage.getItem("apps"))||[]
-
-apps.push({
-name:name,
-desc:desc,
-icon:icon,
-plist:plist
-})
-
-localStorage.setItem("apps",JSON.stringify(apps))
-
-alert("Đã thêm app")
+alert("Cộng xu thành công");
 
 }
 
