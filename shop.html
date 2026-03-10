@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Mua dịch vụ</title>
+
+<style>
+
+body{
+font-family:Arial;
+padding:30px;
+text-align:center;
+}
+
+.box{
+border:1px solid #ddd;
+padding:20px;
+margin:15px;
+border-radius:10px;
+}
+
+button{
+padding:10px 20px;
+cursor:pointer;
+background:#007aff;
+color:white;
+border:none;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Dịch vụ</h2>
+
+<h3>Xu của bạn: <span id="xu">0</span></h3>
+
+<div class="box">
+<h3>Ký App IPA</h3>
+<p>Giá: 10 xu</p>
+<button onclick="mua(10)">Mua</button>
+</div>
+
+<div class="box">
+<h3>Thuê Cert</h3>
+<p>Giá: 50 xu</p>
+<button onclick="mua(50)">Mua</button>
+</div>
+
+<div class="box">
+<h3>VIP</h3>
+<p>Giá: 200 xu</p>
+<button onclick="mua(200)">Mua</button>
+</div>
+
+<script type="module" src="firebase.js"></script>
+
+<script type="module">
+
+import { doc,getDoc,updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+let uid;
+
+onAuthStateChanged(auth, async(user)=>{
+
+uid=user.uid;
+
+let ref=doc(db,"users",uid);
+
+let snap=await getDoc(ref);
+
+document.getElementById("xu").innerHTML=snap.data().xu;
+
+});
+
+window.mua = async function(price){
+
+let ref=doc(db,"users",uid);
+
+let snap=await getDoc(ref);
+
+let xu=snap.data().xu;
+
+if(xu<price){
+
+alert("Không đủ xu");
+
+return;
+
+}
+
+let newXu=xu-price;
+
+await updateDoc(ref,{
+xu:newXu
+});
+
+document.getElementById("xu").innerHTML=newXu;
+
+alert("Mua thành công");
+
+}
+
+</script>
+
+</body>
+</html>
