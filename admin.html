@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Admin Thêm App</title>
+<title>Admin Panel</title>
 
 <style>
 
@@ -14,11 +14,17 @@ background:#f2f2f7;
 padding:20px;
 }
 
+.box{
+background:white;
+padding:20px;
+border-radius:10px;
+}
+
 input{
 width:100%;
 padding:10px;
 margin-bottom:10px;
-border-radius:8px;
+border-radius:6px;
 border:1px solid #ccc;
 }
 
@@ -28,7 +34,7 @@ color:white;
 border:none;
 padding:10px;
 width:100%;
-border-radius:8px;
+border-radius:6px;
 }
 
 </style>
@@ -36,6 +42,20 @@ border-radius:8px;
 </head>
 
 <body>
+
+<div id="login">
+
+<h2>Admin Login</h2>
+
+<input id="pass" placeholder="Nhập mật khẩu">
+
+<button onclick="login()">Đăng nhập</button>
+
+</div>
+
+<div id="panel" style="display:none">
+
+<div class="box">
 
 <h2>Thêm App</h2>
 
@@ -49,7 +69,29 @@ border-radius:8px;
 
 <button onclick="addApp()">Thêm App</button>
 
+</div>
+
+</div>
+
 <script>
+
+function login(){
+
+let pass=document.getElementById("pass").value
+
+if(pass=="123456"){
+
+document.getElementById("login").style.display="none"
+
+document.getElementById("panel").style.display="block"
+
+}else{
+
+alert("Sai mật khẩu")
+
+}
+
+}
 
 function addApp(){
 
