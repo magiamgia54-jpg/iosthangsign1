@@ -1,53 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Đăng nhập</title>
-
-<style>
-body{font-family:Arial;background:#f2f2f7;text-align:center;padding:40px;}
-.box{background:white;padding:30px;border-radius:20px;max-width:350px;margin:auto;}
-input{width:90%;padding:12px;margin:10px;border-radius:10px;border:1px solid #ddd;}
-button{background:#007aff;color:white;border:none;padding:12px;width:95%;border-radius:10px;}
-</style>
-
 </head>
 
-<body>
-
-<div class="box">
+<body style="font-family:Arial;text-align:center;padding:40px">
 
 <h2>Đăng nhập</h2>
 
-<input id="user" placeholder="Tên tài khoản">
-<input id="pass" type="password" placeholder="Mật khẩu">
+<input id="email" placeholder="Email"><br><br>
+
+<input id="pass" type="password" placeholder="Mật khẩu"><br><br>
 
 <button onclick="login()">Đăng nhập</button>
 
-</div>
+<script type="module" src="firebase.js"></script>
 
-<script>
+<script type="module">
 
-function login(){
+window.login = async function(){
 
-let user=document.getElementById("user").value;
+let email=document.getElementById("email").value;
 let pass=document.getElementById("pass").value;
 
-let users=JSON.parse(localStorage.getItem("users")) || {};
-
-if(users[user] && users[user].password==pass){
-
-localStorage.setItem("currentUser",user);
+await signInWithEmailAndPassword(auth,email,pass);
 
 alert("Đăng nhập thành công");
 
-window.location="nap.html";
-
-}else{
-
-alert("Sai tài khoản");
-
-}
+window.location="wallet.html";
 
 }
 
