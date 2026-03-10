@@ -1,12 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Ví Xu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nạp tiền</title>
 
 <style>
-body{font-family:Arial;background:#f2f2f7;text-align:center;padding:40px;}
-.box{background:white;padding:30px;border-radius:20px;max-width:350px;margin:auto;}
+
+body{
+font-family:Arial;
+background:#f2f2f7;
+text-align:center;
+padding:20px;
+}
+
+.box{
+background:white;
+padding:20px;
+border-radius:15px;
+max-width:400px;
+margin:auto;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+img{
+width:260px;
+margin-top:10px;
+}
+
+input{
+width:90%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+margin-top:10px;
+padding:12px;
+border:none;
+background:#007aff;
+color:white;
+border-radius:20px;
+width:95%;
+font-size:16px;
+}
+
+.copy{
+background:#34c759;
+}
+
 </style>
 
 </head>
@@ -15,27 +59,70 @@ body{font-family:Arial;background:#f2f2f7;text-align:center;padding:40px;}
 
 <div class="box">
 
-<h2>Ví của bạn</h2>
+<h2>Quét mã để chuyển tiền</h2>
 
-<p>User:</p>
+<p><b>Ngân hàng:</b> ACB</p>
+<p><b>Chủ TK:</b> LY VAN THANG</p>
+<p><b>STK:</b> 23935211</p>
 
-<h3 id="user"></h3>
+<img id="qr" src="">
 
-<p>Số xu hiện tại:</p>
+<input id="money" placeholder="Nhập số tiền" oninput="taoQR()">
 
-<h1 id="xu"></h1>
+<button class="copy" onclick="copySTK()">Copy số tài khoản</button>
+
+<button onclick="guiYeuCau()">Tôi đã chuyển khoản</button>
+
+<p style="color:red;font-size:14px">
+Sau khi chuyển khoản admin sẽ xác nhận và cộng xu
+</p>
 
 </div>
 
 <script>
 
-let user=localStorage.getItem("currentUser");
+function taoQR(){
 
-let users=JSON.parse(localStorage.getItem("users"));
+let money=document.getElementById("money").value
 
-document.getElementById("user").innerHTML=user;
+let qr=`https://img.vietqr.io/image/acb-23935211-compact.png?amount=${money}&addInfo=nap-tien&accountName=LY%20VAN%20THANG`
 
-document.getElementById("xu").innerHTML=users[user].xu;
+document.getElementById("qr").src=qr
+
+}
+
+function copySTK(){
+
+navigator.clipboard.writeText("23935211")
+
+alert("Đã copy số tài khoản")
+
+}
+
+function guiYeuCau(){
+
+let money=document.getElementById("money").value
+
+if(money==""){
+alert("Nhập số tiền")
+return
+}
+
+let list=JSON.parse(localStorage.getItem("nap"))||[]
+
+list.push({
+tien:money,
+time:new Date().toLocaleString(),
+status:"chờ duyệt"
+})
+
+localStorage.setItem("nap",JSON.stringify(list))
+
+alert("Đã gửi yêu cầu nạp")
+
+window.location.href="index.html"
+
+}
 
 </script>
 
