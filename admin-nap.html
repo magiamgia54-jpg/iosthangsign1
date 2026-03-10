@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin duyệt nạp</title>
+</head>
+
+<body>
+
+<h2>Yêu cầu nạp tiền</h2>
+
+<div id="list"></div>
+
+<script>
+
+let data=JSON.parse(localStorage.getItem("nap"))||[]
+
+let html=""
+
+data.forEach((item,i)=>{
+
+html+=`
+<div style="border:1px solid #ccc;padding:10px;margin:10px;">
+<p>Số tiền: ${item.tien}</p>
+<p>Thời gian: ${item.time}</p>
+<p>Trạng thái: ${item.status}</p>
+
+<button onclick="duyet(${i})">Duyệt</button>
+</div>
+`
+
+})
+
+document.getElementById("list").innerHTML=html
+
+function duyet(i){
+
+let data=JSON.parse(localStorage.getItem("nap"))
+
+let balance=localStorage.getItem("balance")||0
+
+balance=Number(balance)+Number(data[i].tien)
+
+localStorage.setItem("balance",balance)
+
+data[i].status="đã duyệt"
+
+localStorage.setItem("nap",JSON.stringify(data))
+
+alert("Đã cộng xu")
+
+location.reload()
+
+}
+
+</script>
+
+</body>
+</html>
