@@ -2,10 +2,8 @@
 <html lang="vi">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>iOS Thắng Sign</title>
 
 <style>
@@ -35,11 +33,18 @@ font-size:20px;
 font-weight:bold;
 }
 
+#balanceTop{
+margin-left:auto;
+margin-right:10px;
+font-weight:bold;
+color:#007aff;
+display:none;
+}
+
 #userAvatar{
 width:35px;
 height:35px;
 border-radius:50%;
-margin-left:auto;
 cursor:pointer;
 display:none;
 }
@@ -118,12 +123,10 @@ border-radius:20px;
 cursor:pointer;
 }
 
-/* popup số dư */
-
 .balance-box{
 display:none;
 position:fixed;
-top:35%;
+top:40%;
 left:50%;
 transform:translate(-50%,-50%);
 background:white;
@@ -131,10 +134,7 @@ padding:20px;
 border-radius:15px;
 box-shadow:0 5px 20px rgba(0,0,0,0.2);
 text-align:center;
-z-index:2000;
 }
-
-/* menu user */
 
 .userMenu{
 display:none;
@@ -145,7 +145,6 @@ background:white;
 border-radius:10px;
 box-shadow:0 5px 20px rgba(0,0,0,0.2);
 width:180px;
-z-index:2000;
 }
 
 .userMenu a{
@@ -157,14 +156,17 @@ border-bottom:1px solid #eee;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="header">
+
 <span class="menu-btn" onclick="openMenu()">☰</span>
+
 <div class="title">iOS Thắng Sign</div>
+
+<div id="balanceTop">0 Xu</div>
 
 <img id="userAvatar" src="https://i.imgur.com/6VBx3io.png" onclick="openUserMenu()">
 
@@ -178,6 +180,8 @@ border-bottom:1px solid #eee;
 <a href="buy.html">💳 Mua chứng chỉ</a>
 <a href="nap.html">💰 Nạp tiền</a>
 <a href="bank.html">🏦 Thuê bank ảo</a>
+
+<a href="fb.html">📘 Dịch vụ Facebook</a>
 
 <a href="#" onclick="showBalance()">💎 Số dư tài khoản</a>
 
@@ -196,12 +200,15 @@ border-bottom:1px solid #eee;
 
 <div class="app">
 <div class="app-left">
+
 <img src="https://i.imgur.com/7D7I6dI.jpeg">
+
 <div>
 <b>Delta VNG</b>
 <br>
 <small>Phiên bản mới 2026</small>
 </div>
+
 </div>
 
 <a href="itms-services://?action=download-manifest&url=https://magiamgia54-jpg.github.io/delta.plist">
@@ -212,12 +219,15 @@ border-bottom:1px solid #eee;
 
 <div class="app">
 <div class="app-left">
+
 <img src="https://i.imgur.com/7D7I6dI.jpeg">
+
 <div>
 <b>Delta Fix Lag</b>
 <br>
 <small>Update mới nhất</small>
 </div>
+
 </div>
 
 <a href="itms-services://?action=download-manifest&url=https://magiamgia54-jpg.github.io/fixlag.plist">
@@ -229,15 +239,21 @@ border-bottom:1px solid #eee;
 </div>
 
 <div class="balance-box" id="balanceBox">
+
 <h3>Số dư tài khoản</h3>
+
 <p id="balanceText">0 Xu</p>
+
 <button onclick="closeBalance()">Đóng</button>
+
 </div>
 
 <div class="userMenu" id="userMenu">
+
 <a href="#">👤 Tài khoản</a>
 <a href="#" onclick="showBalance()">💰 Số dư</a>
 <a href="#" onclick="logout()">🚪 Đăng xuất</a>
+
 </div>
 
 <script>
@@ -254,25 +270,31 @@ menu.style.left="0px";
 
 }
 
-/* số dư */
-
-let balance=localStorage.getItem("balance") || 0;
-
-function showBalance(){
-document.getElementById("balanceBox").style.display="block";
-document.getElementById("balanceText").innerText=balance+" Xu";
-}
-
-function closeBalance(){
-document.getElementById("balanceBox").style.display="none";
-}
-
-/* avatar */
-
+let balance = localStorage.getItem("balance") || 0;
 let user = localStorage.getItem("user");
 
 if(user){
+
 document.getElementById("userAvatar").style.display="block";
+
+document.getElementById("balanceTop").style.display="block";
+
+document.getElementById("balanceTop").innerText = balance + " Xu";
+
+}
+
+function showBalance(){
+
+document.getElementById("balanceBox").style.display="block";
+
+document.getElementById("balanceText").innerText = balance + " Xu";
+
+}
+
+function closeBalance(){
+
+document.getElementById("balanceBox").style.display="none";
+
 }
 
 function openUserMenu(){
@@ -290,7 +312,9 @@ menu.style.display="block";
 function logout(){
 
 localStorage.removeItem("user");
+
 alert("Đã đăng xuất");
+
 location.reload();
 
 }
