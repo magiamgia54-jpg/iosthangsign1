@@ -5,32 +5,8 @@
 <title>Ví Xu</title>
 
 <style>
-body{
-font-family:Arial;
-background:#f2f2f7;
-text-align:center;
-padding:40px;
-}
-
-.box{
-background:white;
-padding:30px;
-border-radius:20px;
-max-width:350px;
-margin:auto;
-box-shadow:0 5px 20px rgba(0,0,0,0.1);
-}
-
-button{
-background:#28a745;
-color:white;
-border:none;
-padding:12px;
-width:90%;
-border-radius:10px;
-margin-top:10px;
-}
-
+body{font-family:Arial;background:#f2f2f7;text-align:center;padding:40px;}
+.box{background:white;padding:30px;border-radius:20px;max-width:350px;margin:auto;}
 </style>
 
 </head>
@@ -41,36 +17,25 @@ margin-top:10px;
 
 <h2>Ví của bạn</h2>
 
+<p>User:</p>
+
+<h3 id="user"></h3>
+
 <p>Số xu hiện tại:</p>
 
 <h1 id="xu"></h1>
-
-<button onclick="nap()">Admin cộng 100 xu</button>
 
 </div>
 
 <script>
 
-function load(){
+let user=localStorage.getItem("currentUser");
 
-document.getElementById("xu").innerHTML =
-localStorage.getItem("xu");
+let users=JSON.parse(localStorage.getItem("users"));
 
-}
+document.getElementById("user").innerHTML=user;
 
-function nap(){
-
-let xu=parseInt(localStorage.getItem("xu"));
-
-xu +=100;
-
-localStorage.setItem("xu",xu);
-
-load();
-
-}
-
-load();
+document.getElementById("xu").innerHTML=users[user].xu;
 
 </script>
 
