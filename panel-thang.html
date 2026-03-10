@@ -42,17 +42,6 @@ background:white;
 padding:15px;
 border-radius:15px;
 margin-top:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.delete{
-background:red;
-padding:8px 12px;
-border-radius:8px;
-color:white;
-border:none;
 }
 
 </style>
@@ -64,79 +53,42 @@ border:none;
 <h2>⚙️ Admin Thêm App</h2>
 
 <input id="name" placeholder="Tên App">
+
 <input id="desc" placeholder="Mô tả">
-<input id="icon" placeholder="Link Icon">
-<input id="link" placeholder="Link Install / IPA">
+
+<input id="icon" placeholder="Link icon">
+
+<input id="ipa" placeholder="Link IPA">
 
 <button onclick="addApp()">Thêm App</button>
 
-<h2>📦 Danh sách App</h2>
-
-<div id="appList"></div>
-
 <script>
-
-function loadApps(){
-
-let apps=JSON.parse(localStorage.getItem("apps"))||[]
-
-let list=document.getElementById("appList")
-
-list.innerHTML=""
-
-apps.forEach((app,index)=>{
-
-list.innerHTML+=`
-
-<div class="app">
-
-<div>
-<b>${app.name}</b><br>
-<small>${app.desc}</small>
-</div>
-
-<button class="delete" onclick="deleteApp(${index})">Xóa</button>
-
-</div>
-
-`
-
-})
-
-}
 
 function addApp(){
 
 let name=document.getElementById("name").value
 let desc=document.getElementById("desc").value
 let icon=document.getElementById("icon").value
-let link=document.getElementById("link").value
+let ipa=document.getElementById("ipa").value
+
+let plist="itms-services://?action=download-manifest&url="+ipa.replace(".ipa",".plist")
 
 let apps=JSON.parse(localStorage.getItem("apps"))||[]
 
-apps.push({name,desc,icon,link})
+apps.push({
+
+name:name,
+desc:desc,
+icon:icon,
+link:plist
+
+})
 
 localStorage.setItem("apps",JSON.stringify(apps))
 
 alert("Đã thêm app")
 
-loadApps()
-
 }
-
-function deleteApp(i){
-
-let apps=JSON.parse(localStorage.getItem("apps"))||[]
-
-apps.splice(i,1)
-
-localStorage.setItem("apps",JSON.stringify(apps))
-
-loadApps()
-
-}
-
-loadApps()
 
 </script>
 
