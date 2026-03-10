@@ -4,53 +4,31 @@
 <head>
 
 <meta charset="UTF-8">
-
-<title>Admin Panel</title>
+<title>Admin Thêm App</title>
 
 <style>
 
 body{
-font-family:-apple-system;
+font-family:Arial;
 background:#f2f2f7;
-margin:0;
-}
-
-header{
-background:white;
-padding:16px;
-text-align:center;
-font-size:20px;
-font-weight:600;
-}
-
-.container{
-padding:25px;
-max-width:500px;
-margin:auto;
-}
-
-.box{
-background:white;
 padding:20px;
-border-radius:18px;
 }
 
 input{
 width:100%;
 padding:10px;
-margin-top:10px;
-border-radius:10px;
-border:1px solid #ddd;
+margin-bottom:10px;
+border-radius:8px;
+border:1px solid #ccc;
 }
 
 button{
-margin-top:10px;
 background:#007aff;
 color:white;
 border:none;
 padding:10px;
-border-radius:10px;
 width:100%;
+border-radius:8px;
 }
 
 </style>
@@ -59,11 +37,7 @@ width:100%;
 
 <body>
 
-<header>Admin Panel</header>
-
-<div class="container">
-
-<div class="box">
+<h2>Thêm App</h2>
 
 <input id="name" placeholder="Tên app">
 
@@ -71,11 +45,9 @@ width:100%;
 
 <input id="icon" placeholder="Link icon">
 
-<button onclick="addApp()">Thêm app</button>
+<input id="plist" placeholder="Link plist">
 
-</div>
-
-</div>
+<button onclick="addApp()">Thêm App</button>
 
 <script>
 
@@ -84,10 +56,18 @@ function addApp(){
 let name=document.getElementById("name").value
 let desc=document.getElementById("desc").value
 let icon=document.getElementById("icon").value
+let plist=document.getElementById("plist").value
 
-let apps=JSON.parse(localStorage.getItem("apps")||"[]")
+let newApp={
+name:name,
+desc:desc,
+icon:icon,
+link:"itms-services://?action=download-manifest&url="+plist
+}
 
-apps.push({name,desc,icon})
+let apps=JSON.parse(localStorage.getItem("apps"))||[]
+
+apps.push(newApp)
 
 localStorage.setItem("apps",JSON.stringify(apps))
 
