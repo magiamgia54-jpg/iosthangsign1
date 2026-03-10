@@ -3,39 +3,108 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Admin cộng xu</title>
+<title>Admin quản lý user</title>
+
+<style>
+
+body{
+font-family:Arial;
+padding:30px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+td,th{
+border:1px solid #ccc;
+padding:10px;
+text-align:center;
+}
+
+button{
+padding:6px 10px;
+cursor:pointer;
+}
+
+</style>
+
 </head>
 
-<body style="font-family:Arial;text-align:center;padding:40px">
+<body>
 
-<h2>Admin cộng xu</h2>
+<h2>Danh sách người dùng</h2>
 
-<input id="uid" placeholder="UID user"><br><br>
+<table>
 
-<input id="xu" placeholder="Số xu"><br><br>
+<tr>
+<th>Email</th>
+<th>Xu</th>
+<th>Cộng Xu</th>
+</tr>
 
-<button onclick="cong()">Cộng Xu</button>
+<tbody id="users"></tbody>
+
+</table>
 
 <script type="module" src="firebase.js"></script>
 
 <script type="module">
 
-import { doc,updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { collection,getDocs,doc,updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-window.cong = async function(){
+async function loadUsers(){
 
-let uid=document.getElementById("uid").value;
-let xu=parseInt(document.getElementById("xu").value);
+let snap = await getDocs(collection(db,"users"));
+
+let html="";
+
+snap.forEach((d)=>{
+
+let data=d.data();
+
+html+=`
+<tr>
+
+<td>${data.email}</td>
+
+<td id="xu_${d.id}">${data.xu}</td>
+
+<td>
+
+<input id="add_${d.id}" placeholder="Xu" style="width:60px">
+
+<button onclick="cong('${d.id}')">Cộng</button>
+
+</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById("users").innerHTML=html;
+
+}
+
+window.cong = async function(uid){
+
+let val=document.getElementById("add_"+uid).value;
 
 let ref=doc(db,"users",uid);
 
 await updateDoc(ref,{
-xu:xu
+xu:parseInt(val)
 });
+
+document.getElementById("xu_"+uid).innerHTML=val;
 
 alert("Cộng xu thành công");
 
 }
+
+loadUsers();
 
 </script>
 
