@@ -178,13 +178,9 @@ cursor:pointer;
 </div>
 
 <div class="menu" id="menu">
-
 <a href="#">Trang chủ</a>
-<a href="apps.html">Danh sách app</a>
-<a href="guide.html">Hướng dẫn cài</a>
 <a href="https://zalo.me/0395251479">Zalo hỗ trợ</a>
 <a href="https://t.me/iossigm">Telegram</a>
-
 </div>
 
 <div class="logo">
@@ -254,7 +250,7 @@ Vui Lòng Truy Cập Web : iosssign.xo.je
 </div>
 
 <a class="download"
-href="itms-services://?action=download-manifest&url=https://yourdomain.com/apps/delta.plist">
+href="itms-services://?action=download-manifest&url=https://iosssign.xo.je/apps/delta.plist">
 ☁
 </a>
 
@@ -271,7 +267,10 @@ href="itms-services://?action=download-manifest&url=https://yourdomain.com/apps/
 </div>
 </div>
 
-<a class="download">☁</a>
+<a class="download"
+href="itms-services://?action=download-manifest&url=https://iosssign.xo.je/apps/delta.plist">
+☁
+</a>
 
 </div>
 
@@ -286,7 +285,10 @@ href="itms-services://?action=download-manifest&url=https://yourdomain.com/apps/
 </div>
 </div>
 
-<a class="download">☁</a>
+<a class="download"
+href="itms-services://?action=download-manifest&url=https://iosssign.xo.je/apps/skibx.plist">
+☁
+</a>
 
 </div>
 
@@ -301,7 +303,10 @@ href="itms-services://?action=download-manifest&url=https://yourdomain.com/apps/
 </div>
 </div>
 
-<a class="download">☁</a>
+<a class="download"
+href="itms-services://?action=download-manifest&url=https://iosssign.xo.je/apps/ffmenu.plist">
+☁
+</a>
 
 </div>
 
@@ -309,49 +314,25 @@ href="itms-services://?action=download-manifest&url=https://yourdomain.com/apps/
 
 <script>
 
-/* menu */
-
 function toggleMenu(){
-
 let menu=document.getElementById("menu");
-
-if(menu.style.display==="block"){
-menu.style.display="none";
-}else{
-menu.style.display="block";
+menu.style.display = menu.style.display==="block" ? "none" : "block";
 }
 
-}
+/* typing animation */
 
-/* click ngoài menu sẽ đóng */
-
-window.onclick=function(e){
-
-if(!e.target.matches('.header')){
-let menu=document.getElementById("menu");
-menu.style.display="none";
-}
-
-}
-
-/* typing */
-
-let words = ["Seller","Developer","IOS Signer"];
-let i = 0;
-let j = 0;
-let currentWord = "";
-let isDeleting = false;
-let speed = 120;
+let words=["Seller","Developer","IOS Signer"];
+let i=0;
+let j=0;
+let currentWord="";
+let isDeleting=false;
 
 function type(){
 
-currentWord = words[i];
+currentWord=words[i];
 
-if(isDeleting){
-j--;
-}else{
-j++;
-}
+if(isDeleting){j--;}
+else{j++;}
 
 document.getElementById("typing").innerHTML=currentWord.substring(0,j);
 
@@ -367,8 +348,7 @@ i++;
 if(i==words.length){i=0;}
 }
 
-setTimeout(type,speed);
-
+setTimeout(type,120);
 }
 
 type();
