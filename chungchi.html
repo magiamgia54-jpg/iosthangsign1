@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Mua Chứng Chỉ IOS</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#111;
+text-align:center;
+margin:0;
+color:white;
+overflow-x:hidden;
+}
+
+.top{
+background:#222;
+padding:18px;
+font-size:20px;
+font-weight:bold;
+}
+
+.box{
+background:linear-gradient(135deg,#00aaff,#6a00ff);
+margin:25px;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+.price{
+font-size:18px;
+margin:10px;
+}
+
+.buy{
+background:white;
+color:black;
+border:none;
+padding:12px 30px;
+border-radius:25px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* TUYẾT */
+
+.snowflake{
+position:fixed;
+top:-10px;
+color:white;
+font-size:12px;
+pointer-events:none;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(100vh);
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="top">
+💳 Mua Chứng Chỉ IOS
+</div>
+
+<div class="box">
+
+<h3>📱 Chứng Chỉ Esign</h3>
+<p class="price">120.000đ</p>
+
+<button class="buy"
+onclick="window.open('https://zalo.me/0395251479')">
+Mua ngay
+</button>
+
+</div>
+
+
+<div class="box">
+
+<h3>📱 Chứng Chỉ Ksign</h3>
+<p class="price">150.000đ</p>
+
+<button class="buy"
+onclick="window.open('https://zalo.me/0395251479')">
+Mua ngay
+</button>
+
+</div>
+
+
+<div class="box">
+
+<h3>🔥 Chứng Chỉ Scarlet</h3>
+<p class="price">200.000đ</p>
+
+<button class="buy"
+onclick="window.open('https://zalo.me/0395251479')">
+Mua ngay
+</button>
+
+</div>
+
+
+<script>
+
+function snow(){
+
+let snow=document.createElement("div")
+snow.className="snowflake"
+snow.innerHTML="❄"
+
+snow.style.left=Math.random()*window.innerWidth+"px"
+snow.style.animationDuration=(Math.random()*5+5)+"s"
+
+document.body.appendChild(snow)
+
+setTimeout(()=>{
+snow.remove()
+},10000)
+
+}
+
+setInterval(snow,200)
+
+</script>
+
+</body>
+</html>
+```
