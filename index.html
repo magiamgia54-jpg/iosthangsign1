@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
 
 <meta charset="UTF-8">
@@ -21,13 +22,14 @@ overflow-x:hidden;
 /* TOPBAR */
 
 .topbar{
-background:#444;
+background:#333;
 color:white;
 padding:15px;
 position:fixed;
 width:100%;
 top:0;
 z-index:1000;
+font-size:18px;
 }
 
 .menu-btn{
@@ -42,14 +44,14 @@ cursor:pointer;
 
 .menu{
 display:none;
-background:#333;
-padding:15px;
+background:#222;
+padding:10px;
 }
 
 .menu a{
 display:block;
-color:white;
 padding:10px;
+color:white;
 text-decoration:none;
 }
 
@@ -62,12 +64,13 @@ margin-top:90px;
 .logo{
 width:110px;
 border-radius:50%;
+box-shadow:0 0 15px rgba(0,170,255,0.8);
 }
 
-/* TYPING */
+/* TEXT TYPING */
 
 .typing{
-color:#0aa9ff;
+color:#00aaff;
 font-weight:bold;
 font-size:18px;
 margin-top:10px;
@@ -80,30 +83,34 @@ margin:20px;
 }
 
 .social button{
+
 background:#333;
 border:none;
 color:white;
-padding:15px 25px;
+padding:14px 24px;
 margin:5px;
 border-radius:10px;
-font-size:16px;
 cursor:pointer;
+
 }
 
-/* APP */
+/* APP LIST */
 
 .apps{
 margin:20px;
 }
 
 .app{
+
 background:white;
 padding:15px;
 margin:10px;
-border-radius:10px;
+border-radius:12px;
 display:flex;
 align-items:center;
 justify-content:space-between;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+
 }
 
 .app-left{
@@ -119,12 +126,14 @@ margin-right:10px;
 }
 
 .install{
+
 background:#00c853;
 border:none;
 color:white;
 padding:10px 15px;
 border-radius:8px;
 cursor:pointer;
+
 }
 
 /* TUYẾT */
@@ -150,6 +159,7 @@ color:#777;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -162,6 +172,7 @@ IOS Thắng Sign
 
 </div>
 
+
 <div class="menu" id="menu">
 
 <a href="#">Trang Chủ</a>
@@ -173,7 +184,7 @@ IOS Thắng Sign
 
 <div class="header">
 
-<img class="logo" src="https://i.imgur.com/3ZQ3Z6K.png">
+<img class="logo" src="https://i.imgur.com/8Km9tLL.png">
 
 <h2>Hi, this is</h2>
 
@@ -207,14 +218,19 @@ IOS Thắng Sign
 <img src="https://i.imgur.com/Q9Lg3Hh.png">
 
 <div>
+
 <b>Delta VNG Fix Lag IOS</b><br>
 <small>Version 2.7.10</small>
-</div>
 
 </div>
 
-<button class="install" onclick="installApp('delta.plist')">
+</div>
+
+<button class="install"
+onclick="installApp('delta.plist')">
+
 Install
+
 </button>
 
 </div>
@@ -228,14 +244,19 @@ Install
 <img src="https://i.imgur.com/Q9Lg3Hh.png">
 
 <div>
+
 <b>Skibx VNG IOS</b><br>
 <small>Version 2.7.10</small>
-</div>
 
 </div>
 
-<button class="install" onclick="installApp('skibx.plist')">
+</div>
+
+<button class="install"
+onclick="installApp('skibx.plist')">
+
 Install
+
 </button>
 
 </div>
@@ -249,39 +270,53 @@ Install
 <img src="https://i.imgur.com/Q9Lg3Hh.png">
 
 <div>
+
 <b>Menu Hack FF IOS</b><br>
 <small>Cập nhật mới</small>
-</div>
 
 </div>
 
-<button class="install" onclick="installApp('ff.plist')">
+</div>
+
+<button class="install"
+onclick="installApp('ff.plist')">
+
 Install
+
 </button>
 
 </div>
 
+
 </div>
 
+
 <div class="footer">
+
 IOS Thắng Sign © 2026
+
 </div>
+
 
 
 <script>
 
+/* MENU */
+
 function toggleMenu(){
 
-let menu=document.getElementById("menu");
+let menu=document.getElementById("menu")
 
 menu.style.display =
 menu.style.display==="block" ? "none":"block"
 
 }
 
+/* INSTALL */
+
 function installApp(plist){
 
-window.location =
+window.location=
 "itms-services://?action=download-manifest&url="+plist
 
 }
@@ -307,19 +342,27 @@ let el=document.getElementById("typing")
 if(!deleting){
 
 el.innerHTML=texts[index].substring(0,char++)
+
 if(char>texts[index].length){
+
 deleting=true
 setTimeout(type,1500)
 return
+
 }
 
 }else{
 
 el.innerHTML=texts[index].substring(0,char--)
+
 if(char<0){
+
 deleting=false
 index++
-if(index>=texts.length) index=0
+
+if(index>=texts.length)
+index=0
+
 }
 
 }
@@ -335,6 +378,7 @@ type()
 function snow(){
 
 let snow=document.createElement("div")
+
 snow.className="snowflake"
 snow.innerHTML="❄"
 
@@ -344,7 +388,9 @@ snow.style.animationDuration=(Math.random()*5+5)+"s"
 document.body.appendChild(snow)
 
 setTimeout(()=>{
+
 snow.remove()
+
 },10000)
 
 }
@@ -355,4 +401,4 @@ setInterval(snow,200)
 
 </body>
 </html>
-```
+
