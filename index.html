@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html>
 
@@ -27,6 +27,33 @@ justify-content:flex-end;
 padding-right:20px;
 color:white;
 font-size:25px;
+cursor:pointer;
+}
+
+/* menu */
+
+.menu{
+display:none;
+position:absolute;
+top:60px;
+right:10px;
+background:#444;
+width:200px;
+border-radius:10px;
+overflow:hidden;
+z-index:999;
+}
+
+.menu a{
+display:block;
+padding:15px;
+color:white;
+border-bottom:1px solid #555;
+text-decoration:none;
+}
+
+.menu a:hover{
+background:#666;
 }
 
 /* logo */
@@ -137,6 +164,7 @@ font-size:15px;
 .download{
 font-size:30px;
 color:#2b7cff;
+cursor:pointer;
 }
 
 </style>
@@ -145,8 +173,18 @@ color:#2b7cff;
 
 <body>
 
-<div class="header">
+<div class="header" onclick="toggleMenu()">
 ☰
+</div>
+
+<div class="menu" id="menu">
+
+<a href="#">Trang chủ</a>
+<a href="apps.html">Danh sách app</a>
+<a href="guide.html">Hướng dẫn cài</a>
+<a href="https://zalo.me/0395251479">Zalo hỗ trợ</a>
+<a href="https://t.me/iossigm">Telegram</a>
+
 </div>
 
 <div class="logo">
@@ -215,7 +253,10 @@ Vui Lòng Truy Cập Web : iosssign.xo.je
 </div>
 </div>
 
-<div class="download">☁</div>
+<a class="download"
+href="itms-services://?action=download-manifest&url=https://yourdomain.com/apps/delta.plist">
+☁
+</a>
 
 </div>
 
@@ -230,7 +271,7 @@ Vui Lòng Truy Cập Web : iosssign.xo.je
 </div>
 </div>
 
-<div class="download">☁</div>
+<a class="download">☁</a>
 
 </div>
 
@@ -245,7 +286,7 @@ Vui Lòng Truy Cập Web : iosssign.xo.je
 </div>
 </div>
 
-<div class="download">☁</div>
+<a class="download">☁</a>
 
 </div>
 
@@ -260,13 +301,40 @@ Vui Lòng Truy Cập Web : iosssign.xo.je
 </div>
 </div>
 
-<div class="download">☁</div>
+<a class="download">☁</a>
 
 </div>
 
 </div>
 
 <script>
+
+/* menu */
+
+function toggleMenu(){
+
+let menu=document.getElementById("menu");
+
+if(menu.style.display==="block"){
+menu.style.display="none";
+}else{
+menu.style.display="block";
+}
+
+}
+
+/* click ngoài menu sẽ đóng */
+
+window.onclick=function(e){
+
+if(!e.target.matches('.header')){
+let menu=document.getElementById("menu");
+menu.style.display="none";
+}
+
+}
+
+/* typing */
 
 let words = ["Seller","Developer","IOS Signer"];
 let i = 0;
@@ -285,22 +353,18 @@ j--;
 j++;
 }
 
-document.getElementById("typing").innerHTML = currentWord.substring(0,j);
+document.getElementById("typing").innerHTML=currentWord.substring(0,j);
 
-if(!isDeleting && j == currentWord.length){
-isDeleting = true;
+if(!isDeleting && j==currentWord.length){
+isDeleting=true;
 setTimeout(type,1000);
 return;
 }
 
-if(isDeleting && j == 0){
-isDeleting = false;
+if(isDeleting && j==0){
+isDeleting=false;
 i++;
-
-if(i == words.length){
-i = 0;
-}
-
+if(i==words.length){i=0;}
 }
 
 setTimeout(type,speed);
